@@ -1,3 +1,5 @@
+#include "x11_front_end.h"
+
 void event_loop() {
   XEvent event;
   char ch;
@@ -165,4 +167,11 @@ void create_window() {
 
 void event_notification() {
     XSelectInput(dpy, w, 0x00FFFFFF ^ PointerMotionHintMask);
+}
+
+int main() {
+  create_window();
+  event_notification();
+  event_loop();
+  return 0;
 }
