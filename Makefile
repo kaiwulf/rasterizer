@@ -5,7 +5,7 @@ GCCFLAGS = -g3
 DEPS = "x11_front_end.h"
 
 x11_front_end : x11_front_end.o
-	$(CC) -o $@ $(LIBDIR) $? $(CFLAGS)
+	$(CC) -o $@ $(LIBDIR) $? $(CFLAGS) $(GCCFLAGS)
 
 # %.o: %.c $(DEPS)
 # 	$(CC) -c -o $@ $(LIBDIR) $(CFLAGS)
