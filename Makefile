@@ -1,6 +1,7 @@
 CC = gcc
 LIBDIR = -L/usr/include/X11/
 CFLAGS = -lX11 -lXt -lm
+GCCFLAGS = -g3
 DEPS = "x11_front_end.h"
 
 x11_front_end : x11_front_end.o
