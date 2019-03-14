@@ -1,5 +1,15 @@
 #include "x11_front_end.h"
 
+  const static int screen_xsize = 320;
+  const static int screen_ysize = 200;
+
+Visual *vis;            // X11: Visual (visual info about X server)
+Display *dpy;           // X11: Display (connection to X server)
+Window w;               // X11: Window
+XImage *ximg;
+int depth, bytespp, scanline_pad;
+char *screen;
+
 void event_loop() {
   XEvent event;
   char ch;
@@ -120,7 +130,7 @@ void create_window() {
   //- print out some information about the visual
 
   vis = DefaultVisual(dpy,0);
-  switch(vis->c_class) {
+  switch(vis->class) {
     case PseudoColor: printf("Vis is pseudocolor\n");break;
     case StaticColor: printf("Vis is StaticColor\n");break;
     case GrayScale: printf("Vis is GrayScale\n");break;
@@ -142,7 +152,7 @@ void create_window() {
   //- create XImage and offscreen buffer
 
   //sbegin create_screen
-  screen = new char[screen_xsize*screen_ysize*bytespp];
+  char screen[screen_xsize*screen_ysize*bytespp];
   //send create_screen
 
   if (ImageByteOrder(dpy) == LSBFirst ) {
