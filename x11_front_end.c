@@ -8,7 +8,7 @@ Display *dpy;           // X11: Display (connection to X server)
 Window w;               // X11: Window
 XImage *ximg;
 int depth, bytespp, scanline_pad;
-char *screen;
+unsigned char *screen;
 
 void event_loop() {
   XEvent event;
@@ -29,7 +29,7 @@ void event_loop() {
 
     //sbegin random_dots
     int i,j,k;
-    char *c;
+    unsigned char *c;
     c = screen;
     for(i=0; i<screen_xsize; i++) {
       for(j=0; j<screen_ysize; j++) {
@@ -152,7 +152,8 @@ void create_window() {
   //- create XImage and offscreen buffer
 
   //sbegin create_screen
-  char screen[screen_xsize*screen_ysize*bytespp];
+  // screen = new char[screen_xsize*screen_ysize*bytespp]
+  screen = malloc(screen_xsize*screen_ysize*bytespp);
   //send create_screen
 
   if (ImageByteOrder(dpy) == LSBFirst ) {
@@ -183,5 +184,6 @@ int main() {
   create_window();
   event_notification();
   event_loop();
+  free(screen);
   return 0;
 }
