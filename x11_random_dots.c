@@ -1,7 +1,7 @@
 #include "x11_front_end.h"
 
-  const static int screen_xsize = 320;
-  const static int screen_ysize = 200;
+const static int screen_xsize = 320;
+const static int screen_ysize = 200;
 
 Visual *vis;            // X11: Visual (visual info about X server)
 Display *dpy;           // X11: Display (connection to X server)
